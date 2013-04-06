@@ -11,15 +11,15 @@ def build_svm(training_data,kernel=['linear','rbf','poly','sigmoid'],C=[0.01,0.1
     for k in kernel:
         for c in C:
             for g in G:
-                for d in D:
-                    print 'Testing Model With C =',c,', Gamma =',g,', Kernel =',k,', and degree = ',d
-                    testmodel = svm.SVC(C=c,kernel=k,gamma=g,degree=d)
-                    testmodel.fit(training_data.training_features,training_data.training_labels)
-                    p = testmodel.score(training_data.test_features,training_data.test_labels)
-                    if p > percent:
-                        model = testmodel
-                        percent = p
-                        params = 'C = '+str(c)+' Gamma = '+str(g)+' Kernel = '+str(k)+' degree = '+str(d)
+                print 'Testing Model With C =',c,', Gamma =',g,', Kernel =',k
+                testmodel = svm.SVC(C=c,kernel=k,gamma=g)
+                testmodel.fit(training_data.training_features,training_data.training_labels)
+                p = testmodel.score(training_data.test_features,training_data.test_labels)
+                print 'The success rate was',p*100,'%'
+                if p > percent:
+                    model = testmodel
+                    percent = p
+                    params = 'C = '+str(c)+' Gamma = '+str(g)+' Kernel = '+str(k)
 
     print
     print 'Params Chosen:',params,'with percent:',percent

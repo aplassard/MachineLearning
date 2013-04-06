@@ -46,4 +46,4 @@ class TrainingData(object):
 		return self._int_dict.get(n)
 
 	def _split_data(self):
-		self.test_features,self.test_labels,self.training_features,self.test_features = splitTrainingTesting(self._features,self._int_labels)
+		self.test_features,self.test_labels,self.training_features,self.training_labels = splitTrainingTesting(self._features,self._int_labels)
